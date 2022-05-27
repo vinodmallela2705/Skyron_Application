@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/activation.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-fileupload-1.4.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-io-2.11.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/javax.mail.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jquery-3.4.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/poi-3.17.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/poi-ooxml-3.17.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/poi-ooxml-schemas-3.17.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="D:/Softwares/skyron_Development/skyron/src/main/webapp/WEB-INF/lib/activation.jar"/>
+	<classpathentry kind="lib" path="D:/Softwares/skyron_Development/skyron/src/main/webapp/WEB-INF/lib/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="D:/Softwares/skyron_Development/skyron/src/main/webapp/WEB-INF/lib/commons-fileupload-1.4.jar"/>
+	<classpathentry kind="lib" path="D:/Softwares/skyron_Development/skyron/src/main/webapp/WEB-INF/lib/commons-io-2.11.0.jar"/>
+	<classpathentry kind="lib" path="D:/Softwares/skyron_Development/skyron/src/main/webapp/WEB-INF/lib/javax.mail.jar"/>
+	<classpathentry kind="lib" path="D:/Softwares/skyron_Development/skyron/src/main/webapp/WEB-INF/lib/jquery-3.4.1.jar"/>
+	<classpathentry kind="lib" path="D:/Softwares/skyron_Development/skyron/src/main/webapp/WEB-INF/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="D:/Softwares/skyron_Development/skyron/src/main/webapp/WEB-INF/lib/poi-3.17.jar"/>
+	<classpathentry kind="lib" path="D:/Softwares/skyron_Development/skyron/src/main/webapp/WEB-INF/lib/poi-ooxml-3.17.jar"/>
+	<classpathentry kind="lib" path="D:/Softwares/skyron_Development/skyron/src/main/webapp/WEB-INF/lib/poi-ooxml-schemas-3.17.jar"/>
+	<classpathentry kind="lib" path="D:/Softwares/skyron_Development/skyron/src/main/webapp/WEB-INF/lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Vinod Mallela/Downloads/javax.servlet.jar/javax.servlet.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

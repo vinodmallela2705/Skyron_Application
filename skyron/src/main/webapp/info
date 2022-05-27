@@ -1,0 +1,40 @@
+create table employeeDetails( employeeId int not null , firstName VARCHAR2(30) not null,
+ lastName VARCHAR2(30) not null, password VARCHAR2(40) not null 
+,phoneNumber varchar2(12) not null, joiningDate VARCHAR2(10) NOT NULL,
+ employeeStatus varchar2(10)  default 'Active', workEmail VARCHAR2(50) NOT NULL,
+  personalEmail VARCHAR2(40) Default '  ', usedLeaves number Default '0', 
+  designation VARCHAR2(30) NOT NULL, isLead varchar2(5) Default 'NO', 
+  reportingManager varchar2(5) Default 'no',reportingTO varchar2(10) default ' ',gender varchar2(10) NOT NULL,
+  martialStatus varchar2(15) default ' ',religion varchar2(15) default ' ',dateOfBirth VARCHAR2(10) NOT NULL,
+   project VARCHAR2(50) DEFAULT ' ' , department VARCHAR2(25) DEFAULT ' ',
+   workLocation VARCHAR2(30) DEFAULT ' ' , adharNumber VARCHAR2(20) DEFAULT ' ',
+   panNumber VARCHAR2(20) DEFAULT ' ',passportNumber VARCHAR2(10) DEFAULT ' ' ,
+   fatherName VARCHAR2(30) default ' ',motherName VARCHAR2(30) default ' ', 
+   bankName VARCHAR2(30) DEFAULT ' '  ,bankAcno VARCHAR2(20) DEFAULT ' '  ,
+   bankifsc VARCHAR2(20) default ' ',bankBranch VARCHAR2(20) DEFAULT ' ',
+   basicSalary number DEFAULT '0' ,netSalary VARCHAR2(20) DEFAULT ' '  ,bloodGroup varchar2(5)DEFAULT ' ',
+   emergencyContactName VARCHAR2(30) DEFAULT ' ',emergencyContactNumber VARCHAR2(15) DEFAULT ' ',
+   emergencyContactRelation VARCHAR2(20) DEFAULT ' ',employeeType varchar2(20) default 'Employee',
+   employeeAddress varchar2(100) default ' '
+     ,primary key(employeeId));
+     
+     
+     update into employeeDetails (employeeid,firstname,lastname,password,phonenumber,joiningDate,workEmail,designation,gender,dateOfBirth)
+     values (20199,'Vinod Kumar','Mallela','20199','123','27-01-2020','vinod.mallela@skyronsoftware.com','Developer','Male','27-05-1999');
+     
+     
+     
+ create table employeeLeaves (employeeId varchar2(15),fromDate varchar2(15),toDate varchar2(15),days varchar2(10),
+ leaveReason varchar2(100),status varchar2(10),approvedBy varchar2(10),leaveType varchar2(30),usedLeaves varchar2(5)
+ ,employeeName varchar2(100),workMail varchar2(60),PRIMARY KEY(employeeId,fromDate,toDate));
+ 
+ 
+ 
+  create table salarySlips (employeeId varchar2(10),employeeName varchar2(50),
+designation varchar2(50),salaryMonth varchar2(10),salaryYear varchar2(5),location varchar2(30),
+paidDays varchar2(3),basic varchar2(20),hra varchar2(20),specialAllowance varchar2(20),
+conveyance varchar2(20),medicalAllowance varchar2(20),otherAllowance varchar2(20),
+providentFund varchar2(5),pt varchar2(5),tds varchar2(10),grossDeductions varchar2(10)
+,totalGrossSalary varchar2(30),netpay varchar2(50),totalEarnings varchar2(50),totalDeductions varchar2(50),employeePf varchar2(10),
+netpayWords varchar2(200),Lta varchar2(10),professionalTax varchar2(20),basicSalary varchar2(25),pan varchar2(20),personalPay varchar2(20),paybleDays varchar(4),
+uanNumber varchar2(20),pfNumber varchar2(25),bankAcNo varchar2(25),bankName varchar2(50),PRIMARY KEY(employeeId,salaryMonth,salaryYear) );

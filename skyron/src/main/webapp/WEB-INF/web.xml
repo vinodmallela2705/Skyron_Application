@@ -1,0 +1,354 @@
+
+<web-app> <display-name>Skyron</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>login.jsp</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+   <servlet-name>UploadServlet</servlet-name>
+   <servlet-class>UploadServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+   <servlet-name>UploadServlet</servlet-name>
+   <url-pattern>/UploadServlet</url-pattern>
+</servlet-mapping>
+  <context-param> 
+      <description>Location to store uploaded file</description> 
+      <param-name>file-upload</param-name> 
+      <param-value>
+         WebContent/uploaded-files/
+      </param-value> 
+   </context-param>
+  
+ <error-page>  
+  <exception-type>java.lang.Exception</exception-type>   
+  <location>/error.jsp</location>  
+  </error-page> 
+     
+ <error-page>  
+  <exception-type>404</exception-type>   
+  <location>/404.jsp</location>  
+  </error-page> 
+   <!-- login -->
+   <servlet>
+  <servlet-name>login</servlet-name>
+  <jsp-file>/login.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>login</servlet-name>
+  <url-pattern>/login</url-pattern>
+</servlet-mapping>
+   <servlet>
+  <servlet-name>logOut</servlet-name>
+  <jsp-file>/logOut.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>logOut</servlet-name>
+  <url-pattern>/logOut</url-pattern>
+</servlet-mapping>
+    <servlet>
+  <servlet-name>loginValidation</servlet-name>
+ <!--  <jsp-file>/Validation/loginValidation.jsp</jsp-file>  -->
+ <servlet-class>com.validation.LoginDao</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>loginValidation</servlet-name>
+  <url-pattern>/lvalid</url-pattern>
+</servlet-mapping>
+  <servlet>
+  <servlet-name>policies</servlet-name>
+  <jsp-file>/Validation/policies.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>policies</servlet-name>
+  <url-pattern>/policies</url-pattern>
+</servlet-mapping>
+ <!-- -Admin -->
+
+ <!-- employee -->
+ <servlet>
+   <servlet-name>EmailToEmployee</servlet-name>
+   <servlet-class>com.mail.SendEmailToEmployee</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>EmailToEmployee</servlet-name>
+    <url-pattern>/sendmail</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>addEmployeeDao</servlet-name>
+ <servlet-class>com.validation.AddEmployeeDao</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>addEmployeeDao</servlet-name>
+  <url-pattern>/addEmployeeDao</url-pattern>
+</servlet-mapping>
+ <servlet>
+   <servlet-name>employeeProfile</servlet-name>
+  <jsp-file>/employee/employeeProfile.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>employeeProfile</servlet-name>
+  <url-pattern>/employeeProfile</url-pattern>
+</servlet-mapping>
+ <servlet>
+   <servlet-name>profile</servlet-name>
+  <jsp-file>/Profile.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>profile</servlet-name>
+  <url-pattern>/profile</url-pattern>
+</servlet-mapping>
+ <servlet>
+  <servlet-name>employeeDashboard</servlet-name>
+  <jsp-file>/employee/employeeProfile.jsp</jsp-file>
+ <!--  <jsp-file>/employee/employeeDashboard.jsp</jsp-file>  -->
+</servlet>
+<servlet-mapping>
+  <servlet-name>employeeDashboard</servlet-name>
+  <url-pattern>/employeeDashboard</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>allEmployees</servlet-name>
+  <jsp-file>/employee/allEmployees.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>allEmployees</servlet-name>
+  <url-pattern>/allEmployees</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>allEmployeesList</servlet-name>
+  <jsp-file>/employee/allEmployeesList.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>allEmployeesList</servlet-name>
+  <url-pattern>/allEmployeesList</url-pattern>
+</servlet-mapping>
+<servlet>
+<servlet-name>employeeDetailsForm</servlet-name>
+<jsp-file>/employee/employeeDetailsForm.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+<servlet-name>employeeDetailsForm</servlet-name>
+<url-pattern>/employeeDetailsForm</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>employeeDetailsFormDao</servlet-name>
+<servlet-class>com.validation.EmployeeDetailsFormDao</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>employeeDetailsFormDao</servlet-name>
+<url-pattern>/edfDao</url-pattern>
+</servlet-mapping>
+
+
+
+<servlet>
+  <servlet-name>holidays</servlet-name>
+  <jsp-file>/employee/Holiday.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>holidays</servlet-name>
+  <url-pattern>/holidays</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>holidayDao</servlet-name>
+  <jsp-file>/employee/holidayDao.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>holidayDao</servlet-name>
+  <url-pattern>/holidayDao</url-pattern>
+</servlet-mapping>
+
+<servlet>
+  <servlet-name>calendar</servlet-name>
+  <jsp-file>/employee/calendar.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>calendar</servlet-name>
+  <url-pattern>/calendar</url-pattern>
+</servlet-mapping>
+
+<servlet>
+  <servlet-name>search</servlet-name>
+  <jsp-file>/search.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>search</servlet-name>
+  <url-pattern>/search</url-pattern>
+</servlet-mapping>
+<!-- -Leaves -->
+<servlet>
+  <servlet-name>adminEmployeeLeaves</servlet-name>
+  <jsp-file>/leaves/adminEmployeeLeaves.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>adminEmployeeLeaves</servlet-name>
+  <url-pattern>/adminEmployeeLeaves</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>employeeLeaves</servlet-name>
+  <jsp-file>/leaves/employeeLeaves.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>employeeLeaves</servlet-name>
+  <url-pattern>/employeeLeaves</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>leaveDao</servlet-name>
+  <jsp-file>/leaves/leaveDao.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>leaveDao</servlet-name>
+  <url-pattern>/leaveDao</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>leaveStatusDao</servlet-name>
+  <jsp-file>/leaves/leaveStatusDao.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>leaveStatusDao</servlet-name>
+  <url-pattern>/leaveStatusDao</url-pattern>
+</servlet-mapping>
+<servlet>
+   <servlet-name>leaveRequestMail</servlet-name>
+   <servlet-class>com.mail.Employee_Leave_Mail</servlet-class>
+</servlet>
+  <servlet-mapping>
+    <servlet-name>leaveRequestMail</servlet-name>
+    <url-pattern>/leaveRequestMail</url-pattern>
+</servlet-mapping>
+<servlet>
+   <servlet-name>leaveMailStatus</servlet-name>
+   <servlet-class>com.mail.Employee_Leave_Status</servlet-class>
+</servlet>
+  <servlet-mapping>
+    <servlet-name>leaveMailStatus</servlet-name>
+    <url-pattern>/leaveMailStatus</url-pattern>
+</servlet-mapping>
+<!-- Salary slip -->
+<servlet>
+  <servlet-name>employeeSalaryMail</servlet-name>
+ <servlet-class>com.mail.EmployeeSalaryMail</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>employeeSalaryMail</servlet-name>
+<url-pattern>/salaryMail</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>manageSalarySlip</servlet-name>
+  <jsp-file>/paySlip/manageSalarySlip.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>manageSalarySlip</servlet-name>
+  <url-pattern>/manageSalarySlip</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>paySlip</servlet-name>
+  <jsp-file>/paySlip/paySlip.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>paySlip</servlet-name>
+  <url-pattern>/paySlip</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>employeeSalarySlips</servlet-name>
+  <jsp-file>/paySlip/employeeSalarySlips.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>employeeSalarySlips</servlet-name>
+  <url-pattern>/SalarySlips</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>generateSalarySlips</servlet-name>
+  <jsp-file>/paySlip/generateSalarySlip.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>generateSalarySlips</servlet-name>
+  <url-pattern>/generateSalarySlips</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>generateSalarySlipDao</servlet-name>
+  <servlet-class>com.validation.GenerateSalarySlipDao</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>generateSalarySlipDao</servlet-name>
+  <url-pattern>/generateSalarySlipDao</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>paySlipReports</servlet-name>
+  <jsp-file>/paySlip/paySlipReports.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>paySlipReports</servlet-name>
+  <url-pattern>/paySlipReports</url-pattern>
+</servlet-mapping>
+<!-- header -->
+<servlet>
+  <servlet-name>header</servlet-name>
+  <jsp-file>/header.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>header</servlet-name>
+  <url-pattern>/header</url-pattern>
+</servlet-mapping>
+<!-- -passwords -->
+<servlet>
+  <servlet-name>forgetPassword</servlet-name>
+  <jsp-file>/Password/forgetPassword.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>forgetPassword</servlet-name>
+  <url-pattern>/forgetPassword</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+<servlet-name>forgetPasswordDao</servlet-name>
+<jsp-file>/Password/forgetPasswordDao.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+<servlet-name>forgetPasswordDao</servlet-name>
+<url-pattern>/fpd</url-pattern>
+</servlet-mapping>
+
+<servlet>
+   <servlet-name>ResetPassword</servlet-name>
+   <servlet-class>com.mail.ResetPassword</servlet-class>
+</servlet>
+  <servlet-mapping>
+    <servlet-name>ResetPassword</servlet-name>
+    <url-pattern>/resetPassword</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>otp</servlet-name>
+  <jsp-file>/Password/otp.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>otp</servlet-name>
+  <url-pattern>/otp</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>passwordChangeDao</servlet-name>
+  <jsp-file>/Password/passwordChangeDao.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>passwordChangeDao</servlet-name>
+  <url-pattern>/passwordChangeDao</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>changePassword</servlet-name>
+  <jsp-file>/Password/changePassword.jsp</jsp-file>
+</servlet>
+<servlet-mapping>
+  <servlet-name>changePassword</servlet-name>
+  <url-pattern>/changePassword</url-pattern>
+</servlet-mapping>
+
+</web-app>
