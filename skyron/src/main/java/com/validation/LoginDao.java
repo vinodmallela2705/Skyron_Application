@@ -1,13 +1,17 @@
+/*
+ * This Java Program is for validating login User credentials
+ * Author: Vinod Kumar Mallela
+ */
+
 package com.validation;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,12 +22,13 @@ import com.JdbcConnection.DbConn;
 public class LoginDao extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public boolean check(String employeeId,String password) throws SQLException {
+
+	public boolean check(String employeeEmail,String password) throws SQLException {
 		try {
 			Connection con=DbConn.getCon();
-			String sql="select * from employeeDetails where employeeId=? and password=? and employeeStatus = 'Active'";
+			String sql="select * from employeeDetails where workEmail=? and password=? and employeeStatus = 'Active'";
 			PreparedStatement st=con.prepareStatement(sql);
-			st.setString(1,employeeId);
+			st.setString(1,employeeEmail);
 			st.setString(2,password);
 
 			ResultSet rs=st.executeQuery();
@@ -31,26 +36,28 @@ public class LoginDao extends HttpServlet {
 				return true;
 			}
 		} catch (Exception e) {
-
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		return false;
 	}
-	public void doPost(HttpServletRequest request, HttpServletResponse response){  
-	String employeeId = request.getParameter("employeeId");
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{  
+		String employeeEmail = request.getParameter("employeeEmail");
 		String password = request.getParameter("password");
-		  HttpSession session=request.getSession();  
+		PrintWriter out=response.getWriter(); 
+		HttpSession session=request.getSession();  
 		try {
-			if(check(employeeId, password))
-
+			if(check(employeeEmail, password))
 			{	      
-				session.setAttribute("employeeId",employeeId);
+				session.setAttribute("employeeEmail",employeeEmail);
+				session.setAttribute("employeeId","20199");
 				response.sendRedirect(request.getContextPath()+"/employeeDashboard");
-			}else{
-				response.sendRedirect(request.getContextPath()+"/login?error=Incorrect username and password");
+			} else {
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('Email or password incorrect');");
+				out.println("window.location.href = '"+request.getContextPath()+"/login';");
+				out.println("</script>");
 			}
 		} catch (Exception e) {
-			
 			e.printStackTrace();
 		} 
 	}

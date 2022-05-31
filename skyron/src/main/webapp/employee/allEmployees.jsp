@@ -1,10 +1,15 @@
-
+<!-- --
+This JSP is for Display All Employees in Grid View
+ -->
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.sql.*"
 	import="java.io.*,com.JdbcConnection.DbConn"%>
 	<%
 	if(((String)session.getAttribute("employeeId"))==null){
-		response.sendRedirect(request.getContextPath()+"/login?error=session Expired Please Re-Login");
+		out.println("<script type=\"text/javascript\">");
+		out.println("alert('Session Time Out Please Login');");
+		out.println("window.location.href = '"+request.getContextPath()+"/login';");
+		out.println("</script>");
     	}
 	try{
 		Connection con=DbConn.getCon();
@@ -83,35 +88,6 @@
 				</div>
 				<!-- /Page Header -->
 
-				<!-- Search Filter -->
-				<div class="row filter-row">
-					<div class="col-sm-6 col-md-3">
-						<div class="form-group form-focus">
-							<input type="text" class="form-control floating" id="tkey"> <label
-								class="focus-label">Employee ID</label>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="form-group form-focus">
-							<input type="text" class="form-control floating"> <label
-								class="focus-label">Employee Name</label>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="form-group form-focus select-focus">
-							<select class="select floating">
-								<option>Select Designation</option>
-								
-								<option>Software Developer</option>
-								
-							</select> <label class="focus-label">Designation</label>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<a href="#" class="btn btn-success btn-block"> Search </a>
-					</div>
-				</div>
-				<!-- Search Filter -->
 					<div class="row staff-grid-row"><%
 						   	String sql="select * from employeeDetails";
 						   	ResultSet rs= statement.executeQuery(sql);
@@ -254,6 +230,42 @@
 								</div>
 								</div>
 							<div class="table-responsive m-t-15"></div>
+							
+							<div class="table-responsive m-t-15">
+										<table class="table table-striped custom-table">
+											<thead>
+												<tr>
+													<th>Module Permission</th>
+													<th class="text-center" name="PaySlipsAcess">PaySlips</th>
+													<th class="text-center" name="LeavesAcess">Leaves</th>
+													<th class="text-center" name="holidaysAcess">Holidays</th>
+													<th class="text-center" name="TeamViewAcess">Team View</th>
+													<th class="text-center" name="projectViewAcess">Project</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Access</td>
+													<td class="text-center">
+														<input checked="" type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+													<td class="text-center">
+														<input type="checkbox">
+													</td>
+
+												</tr>
+											</tbody>
+										</table>
+									</div>
 							<div class="submit-section">
 								<button class="btn btn-primary submit-btn">Save</button>
 							</div>

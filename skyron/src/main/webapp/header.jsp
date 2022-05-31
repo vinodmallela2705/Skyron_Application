@@ -13,7 +13,10 @@
  
     try{
     	if(((String)session.getAttribute("employeeId"))==null){
-		response.sendRedirect(request.getContextPath()+"/login?error=Time Out! Please Re-Login");
+    		out.println("<script type=\"text/javascript\">");
+			out.println("alert('Session Time Out Please Login');");
+			out.println("window.location.href = '"+request.getContextPath()+"/login';");
+			out.println("</script>");
     	}else{
     employeeId = Integer.parseInt((String)session.getAttribute("employeeId"));
     Connection con=DbConn.getCon();

@@ -39,8 +39,9 @@ public class ResetPassword extends HttpServlet{
 			properties.put("mail.smtp.ssl.trust", "mail.zauca.com");
 			properties.put("mail.smtp.host", "mail.zauca.com");
 			properties.put("mail.smtp.port", "587");
-			final String myAccountMail = "vinod.mallela@skyronsoftware.com";
-			final String password  = "Srinusha@2705";
+			MailAuthDetails MADObj = new MailAuthDetails();
+			final String myAccountMail = MADObj.getEmail();
+			final String password  = MADObj.getPassWord();
 
 			Session session =Session.getInstance(properties, new Authenticator() {
 				@Override

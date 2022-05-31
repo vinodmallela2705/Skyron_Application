@@ -13,7 +13,10 @@
 <%
     dateTimeformatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
     if(((String)session.getAttribute("employeeId"))==null){
-		response.sendRedirect(request.getContextPath()+"/login?error=session Expired");
+    	out.println("<script type=\"text/javascript\">");
+		out.println("alert('Session Time Out Please Login');");
+		out.println("window.location.href = '"+request.getContextPath()+"/login';");
+		out.println("</script>");
     	}
     try{
     	

@@ -8,8 +8,13 @@
     String team = "Skyron";%>
     <% 
     try{
-            while(((String)session.getAttribute("employeeId"))==null)
-    		response.sendRedirect(request.getContextPath()+"/login?error=session Expired Please Re-Login");
+            while(((String)session.getAttribute("employeeId"))==null){
+            	out.println("<script type=\"text/javascript\">");
+    			out.println("alert('Session Time Out Please Login');");
+    			out.println("window.location.href = '"+request.getContextPath()+"/login';");
+    			out.println("</script>");
+            }
+            
     	if(request.getParameter("id")==null)
     		employee_id_h =Integer.parseInt((String)session.getAttribute("employeeId"));
     	else
@@ -19,6 +24,10 @@
 	PreparedStatement st=con.prepareStatement(sql_header);
 	st.setInt(1,employee_id_h);
 	ResultSet rs=st.executeQuery();
+	out.println("<script type=\"text/javascript\">");
+	out.println("alert('Employee Added Sucessfully\\n\\nEmployeeID :"+employeeName+"');");
+	
+	out.println("</script>");
 	while(rs.next()){
 		employeeName = rs.getString("firstName")+" "+rs.getString("lastName");
 		//employeeImage = rs.getString("photo");

@@ -53,9 +53,11 @@ public class AddEmployeeDao extends HttpServlet {
 			st.executeUpdate(); 
 			HttpSession session = request.getSession();
 			session.setAttribute("userid",employeeId);
-			session.setAttribute("mail", workEmail);
+			session.setAttribute("mail", personalEmail);
+			session.setAttribute("workEmail", workEmail);
 			session.setAttribute("password", password);
 			session.setAttribute("name", firstName);
+			session.setAttribute("designation", designation);
 			response.sendRedirect(request.getContextPath()+"/sendmail");
 		}catch(Exception e){
 		e.printStackTrace();

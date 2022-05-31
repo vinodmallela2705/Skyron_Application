@@ -51,10 +51,10 @@
 							<p class="account-subtitle">Access to our dashboard</p>
 							
 							<!-- Account Form -->
-							<form action="lvalid" method="post">
+							<form action="lvalid" method="post" name="loginForm">
 								<div class="form-group">
 									<label>Employee Id</label>
-									<input class="form-control" type="text" name="employeeId" required>
+									<input class="form-control" type="email" name="employeeEmail" required>
 								</div>
 								<div class="form-group">
 									<div class="row">
@@ -103,22 +103,14 @@
 		
 		<!-- Custom JS -->
 		<script src="assets/js/app.js"></script>
-		<link rel="stylesheet" href="https://www.jquery-az.com/javascript/alert/dist/sweetalert.css">
-<script src ="https://www.jquery-az.com/javascript/alert/dist/sweetalert-dev.js"></script>
  
 		<script type="text/javascript">
 function JSalert(){
-	swal({   title: "<%=request.getParameter("error")%>",   
-    text: "Thank You!",   	
-    type: "warning", 
-    showconfirmButton:false,	
-    CancelButtonColor: "#DD6B55",   
-    CancelButtonText: "OK!",    
-    closeOnConfirm: true,   
-    closeOnCancel: true }, 
-    function(isConfirm){   
-        
-        });
+	var error = <%=error%>;
+	if(error == 1)
+	alert("Incorrect Email or Password!");
+	if(error == 2)
+		alert("Incorrect Email or Password!");
 }
 </script>
 		
