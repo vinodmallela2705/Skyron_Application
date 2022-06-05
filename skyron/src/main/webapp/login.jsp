@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" oncontextmenu="return false">
     <head>
-    
-    
-   
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
         <meta name="description" content="Smarthr - Bootstrap Admin Template">

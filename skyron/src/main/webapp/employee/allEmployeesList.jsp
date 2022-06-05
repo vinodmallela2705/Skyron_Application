@@ -1,7 +1,7 @@
 <%@page import="java.util.HashSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.sql.*,java.util.*"
-	import="java.io.*,com.JdbcConnection.DbConn"%><!DOCTYPE html>
+	import="com.JdbcConnection.DbConn"%><!DOCTYPE html>
 <html lang="en">
 <head>
 <%!HashSet<String>designations = new HashSet<String>(); %>

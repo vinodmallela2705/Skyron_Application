@@ -8,7 +8,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
+
   <servlet>
    <servlet-name>UploadServlet</servlet-name>
    <servlet-class>UploadServlet</servlet-class>
@@ -30,7 +30,10 @@
   <exception-type>java.lang.Exception</exception-type>   
   <location>/error.jsp</location>  
   </error-page> 
-     
+   <error-page>  
+  <exception-type>java.Exception</exception-type>   
+  <location>/error.jsp</location>  
+  </error-page> 
  <error-page>  
   <exception-type>404</exception-type>   
   <location>/404.jsp</location>  

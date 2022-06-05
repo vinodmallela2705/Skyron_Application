@@ -29,6 +29,7 @@ public class AddEmployeeDao extends HttpServlet {
 		String dob = request.getParameter("dob");
 		String designation = request.getParameter("designation");
 		String password = lastName+"@"+employeeId;
+		String objID = employeeId.hashCode()+lastName.length()+dob;
 
 		try{
 

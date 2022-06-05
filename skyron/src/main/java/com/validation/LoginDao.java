@@ -53,7 +53,7 @@ public class LoginDao extends HttpServlet {
 				response.sendRedirect(request.getContextPath()+"/employeeDashboard");
 			} else {
 				out.println("<script type=\"text/javascript\">");
-				out.println("alert('Email or password incorrect');");
+				out.println("alert('Incorrect Email or password');");
 				out.println("window.location.href = '"+request.getContextPath()+"/login';");
 				out.println("</script>");
 			}

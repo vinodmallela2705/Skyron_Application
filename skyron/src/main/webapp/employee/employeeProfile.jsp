@@ -1,7 +1,6 @@
 	 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
-     import="java.sql.*"
-     import="java.io.*,com.JdbcConnection.DbConn"%>
+     import="java.sql.*,java.io.*,com.JdbcConnection.DbConn,java.time.*"%>
     <%!   int employee_id_h  ;
     String employeeName ;
     String employeeImage  = "assets/skyronImages/employeeIcon.png" ;
@@ -14,7 +13,6 @@
     			out.println("window.location.href = '"+request.getContextPath()+"/login';");
     			out.println("</script>");
             }
-            
     	if(request.getParameter("id")==null)
     		employee_id_h =Integer.parseInt((String)session.getAttribute("employeeId"));
     	else
@@ -24,13 +22,18 @@
 	PreparedStatement st=con.prepareStatement(sql_header);
 	st.setInt(1,employee_id_h);
 	ResultSet rs=st.executeQuery();
-	out.println("<script type=\"text/javascript\">");
-	out.println("alert('Employee Added Sucessfully\\n\\nEmployeeID :"+employeeName+"');");
-	
-	out.println("</script>");
 	while(rs.next()){
 		employeeName = rs.getString("firstName")+" "+rs.getString("lastName");
 		//employeeImage = rs.getString("photo");
+		String joiningDate = rs.getString("joiningdate");
+		String[] joiningDateS = joiningDate.split("-");
+		int year = Integer.parseInt(joiningDateS[2]);
+		int month = Integer.parseInt(joiningDateS[1]);
+		int date = Integer.parseInt(joiningDateS[0]);
+		LocalDate dob = LocalDate.of(year, month, date);
+		LocalDate curDate = LocalDate.now();    
+		Period period = Period.between(dob, curDate); 
+		String experience = period.getYears()+" years "+period.getMonths()+" months and "+period.getDays()+" days";
 	%>
 	
 	<!DOCTYPE html>
@@ -106,8 +109,9 @@
 														<h3 class="user-name m-t-0 mb-0"><%=employeeName %></h3>
 														<h6 class="text-muted"><%=team %></h6>
 														<small class="text-muted"><%=rs.getString("designation") %></small>
-														<div class="staff-id">Employee ID : <%=employee_id_h %></div>
-														<div class="small doj text-muted">Date of Join : <%=rs.getString("joiningdate") %></div>
+														<div class="staff-id">Employee ID  : <%=employee_id_h %></div>
+														<div class="staff-id">Date of Join  : <%=rs.getString("joiningdate") %></div>
+														<div class="staff-id">Experience  : <%=experience %></div>
 														<div class="staff-msg"><a class="btn btn-custom" href="<%=request.getContextPath() %>/employeeDetailsForm" >Add Details</a></div>
 													
 													
@@ -124,7 +128,7 @@
 															<div class="text"><a href=""><%=rs.getString("workemail") %></a></div>
 														</li>
 														<li>
-															<div class="title">Birthday:</div>
+															<div class="title">Date Of Birth:</div>
 															<div class="text"><%=rs.getString("dateofbirth") %></div>
 														</li>
 														<li>

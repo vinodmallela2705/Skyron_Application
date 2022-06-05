@@ -237,13 +237,13 @@
 							</li>
 							<%if(employeeType.equalsIgnoreCase("Admin")){ %>
 							<li class="submenu">
-								<a href="#"><i class="la la-user-secret"></i> <span> Adminstration</span> <span class="menu-arrow"></span></a>
+								<a href="#" class="active"> <span> Adminstration</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-								    <li><a href="<%=request.getContextPath()%>/allEmployees">All Employees</a>
+								    <li><a href="<%=request.getContextPath()%>/allEmployees" >All Employees</a>
 							</li>
-									<li><a href="<%=request.getContextPath()%>/adminEmployeeLeaves">Leave requests</a></li>
-									<li><a href="<%=request.getContextPath() %>/manageSalarySlip"> Employee Salary </a></li>
-									<li><a href="<%=request.getContextPath() %>/paySlipReports">Salary Reports</a></li>
+									<li><a href="<%=request.getContextPath()%>/adminEmployeeLeaves" >Leave requests</a></li>
+									<li><a href="<%=request.getContextPath() %>/manageSalarySlip" > Employee Salary </a></li>
+									<li><a href="<%=request.getContextPath() %>/paySlipReports" > Salary Reports</a></li>
 								</ul>
 							</li>
 							<%} %>
