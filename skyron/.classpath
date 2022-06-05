@@ -9,7 +9,6 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/activation.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-collections4-4.1.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-fileupload-1.4.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-io-2.11.0.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/javax.mail.jar"/>
@@ -20,7 +19,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/poi-ooxml-schemas-3.17.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="lib" path="D:/Softwares/skyron_Development/skyron/src/main/webapp/WEB-INF/lib/activation.jar"/>
-	<classpathentry kind="lib" path="D:/Softwares/skyron_Development/skyron/src/main/webapp/WEB-INF/lib/commons-collections4-4.1.jar"/>
 	<classpathentry kind="lib" path="D:/Softwares/skyron_Development/skyron/src/main/webapp/WEB-INF/lib/commons-fileupload-1.4.jar"/>
 	<classpathentry kind="lib" path="D:/Softwares/skyron_Development/skyron/src/main/webapp/WEB-INF/lib/commons-io-2.11.0.jar"/>
 	<classpathentry kind="lib" path="D:/Softwares/skyron_Development/skyron/src/main/webapp/WEB-INF/lib/javax.mail.jar"/>
@@ -31,5 +29,8 @@
 	<classpathentry kind="lib" path="D:/Softwares/skyron_Development/skyron/src/main/webapp/WEB-INF/lib/poi-ooxml-schemas-3.17.jar"/>
 	<classpathentry kind="lib" path="D:/Softwares/skyron_Development/skyron/src/main/webapp/WEB-INF/lib/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Vinod Mallela/Downloads/javax.servlet.jar/javax.servlet.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Vinod Mallela/Downloads/commons-dbutils-1.7-bin/commons-dbutils-1.7/commons-dbutils-1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Vinod Mallela/Downloads/commons-dbutils-1.5.jar/commons-dbutils-1.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Vinod Mallela/Downloads/ojdbc11.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
