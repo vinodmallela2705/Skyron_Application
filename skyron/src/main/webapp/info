@@ -27,7 +27,8 @@ create table employeeDetails( employeeId int not null , firstName VARCHAR2(30) n
      update into employeeDetails (employeeid,firstname,lastname,password,phonenumber,joiningDate,workEmail,designation,gender,dateOfBirth)
      values (20199,'Vinod Kumar','Mallela','20199','123','27-01-2020','vinod.mallela@skyronsoftware.com','Developer','Male','27-05-1999');
      
-     
+     update into employeeDetails (employeeid,firstname,lastname,password,phonenumber,joiningDate,workEmail,designation,gender,dateOfBirth,employeeType)
+     values (20190,'Skyron','Software Solutions','Skyron@Admin','123456','01-11-2019','skyron@skyronsoftware.com','Admin','Male','01-11-2019','Admin');
      
  create table employeeLeaves (employeeId varchar2(15),fromDate varchar2(15),toDate varchar2(15),days varchar2(10),
  leaveReason varchar2(100),status varchar2(10),approvedBy varchar2(10),leaveType varchar2(30),usedLeaves varchar2(5)
