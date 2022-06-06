@@ -2,6 +2,7 @@ create user skyron identified by skyron;
 grant all privileges to skyron;
 
 
+
 create table employeeDetails( employeeId int not null , firstName VARCHAR2(30) not null,
  lastName VARCHAR2(30) not null, password VARCHAR2(40) not null 
 ,phoneNumber varchar2(12) not null, joiningDate VARCHAR2(10) NOT NULL,
