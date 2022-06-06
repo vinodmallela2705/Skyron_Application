@@ -46,8 +46,7 @@
 <title>Employee Dashboard</title>
 
 <!-- Favicon -->
-<link rel="shortcut icon" type="image/x-icon"
-	href="assets/skyronImages/favicon.png">
+<link rel="shortcut icon" type="image/x-icon" href="assets/skyronImages/favicon.png">
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">

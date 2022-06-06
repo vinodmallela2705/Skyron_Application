@@ -154,7 +154,7 @@
 
 <servlet>
   <servlet-name>holidays</servlet-name>
-  <jsp-file>/employee/Holiday.jsp</jsp-file>
+  <jsp-file>/employee/holidays.jsp</jsp-file>
 </servlet>
 <servlet-mapping>
   <servlet-name>holidays</servlet-name>

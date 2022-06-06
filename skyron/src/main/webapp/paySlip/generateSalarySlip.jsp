@@ -62,13 +62,13 @@ try {
 		basic = resultSet.getInt("basicSalary");
 		hra = basic / 2;
 		lta = basic / 5;
-		personalPay = basic / (int) 3.333;
-		providentFund = 2412;
+		personalPay = basic / (int) 3.33374415;
+		providentFund = 1800;
 		incomeTax = 0;
-		employeePF = 2412;
+		employeePF = 0;
 		professionTax = 200;
-		employeePF = 2412;
-		totalEarnings = basic + hra + lta + personalPay + providentFund;
+		employeePF = 0;
+		totalEarnings = basic + hra + lta + personalPay ;
 		totalDeductions = providentFund + professionTax + incomeTax + employeePF;
 		netPay = totalEarnings - totalDeductions;
 %>

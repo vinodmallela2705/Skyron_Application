@@ -30,8 +30,7 @@ try {
 <title>Employees</title>
 
 <!-- Favicon -->
-<link rel="shortcut icon" type="image/x-icon"
-	href="assets/skyronImages/favicon.png">
+<link rel="shortcut icon" type="image/x-icon" href="assets/skyronImages/favicon.png">
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -155,7 +154,6 @@ try {
 				%>
 
 				<!-- /Page Content -->
-
 				<!-- Add Employee Modal -->
 				<div id="add_employee" class="modal custom-modal fade" role="dialog">
 					<div class="modal-dialog modal-dialog-centered modal-lg">
