@@ -35,7 +35,6 @@
 	String existingData ;
 	ResultSet resultSet1 ;
       %>
-
 <%
 if (((String) session.getAttribute("employeeId")) == null) {
 	response.sendRedirect(request.getContextPath() + "/login?error=session Expired Please Re-Login");
