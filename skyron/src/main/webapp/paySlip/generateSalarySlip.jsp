@@ -62,7 +62,9 @@ try {
 		basic = resultSet.getInt("basicSalary");
 		hra = basic / 2;
 		lta = basic / 5;
-		personalPay = basic / (int) 3.33374415;
+		//personalPay = basic / (int) 0.30;
+		double  specialAllowance = (double)basic *0.30;
+		personalPay = (int)specialAllowance;
 		providentFund = 1800;
 		incomeTax = 0;
 		employeePF = 0;

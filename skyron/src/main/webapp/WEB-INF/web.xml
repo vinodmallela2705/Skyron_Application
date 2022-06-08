@@ -1,5 +1,5 @@
 
-<web-app> <display-name>Skyron</display-name>
+<web-app> <display-name>Skyron Software Solutions</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>login.jsp</welcome-file>
