@@ -150,6 +150,7 @@ function validate(){
 	if(check){
 		alert(month+'Payslip Already Generated');
 		return false;
+		
 	}
 	
 	
