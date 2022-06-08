@@ -32,6 +32,8 @@
     fmt = new Formatter();
     fmt.format("%tB", cal);
      year = Calendar.getInstance().get(Calendar.YEAR);}
+	String existingData ;
+	ResultSet resultSet1 ;
       %>
 
 <%
@@ -46,10 +48,15 @@ ResultSet resultSet;
 try {
 	Connection con = DbConn.getCon();
 	statement = con.createStatement();
+	String sql = "select * from salarySlips where  employeeId=?"
 	String sql1 = "SELECT * FROM employeeDetails where employeeId=? ";
 	PreparedStatement st = con.prepareStatement(sql1);
+	PreparedStatement st1 = con.prepareStatement(sql);
 	st.setString(1, employee_id);
+	st1.setString(1, employee_id);
 	resultSet = st.executeQuery();
+	 resultSet1 = st1.executeQuery(); 
+	
 	while (resultSet.next()) {
 
 		employeeName = resultSet.getString("firstName") + " " + resultSet.getString("lastName");
@@ -128,6 +135,26 @@ e.printStackTrace();
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script type="text/javascript">
+var existingData = [];
+<%while(resultSet1.hasNext()){
+%>
+existingData.push('<%=rs1.getString("salaryMonth")+rs1.getString("salaryYear")%>');
+<%	
+}%>
+function validate(){
+	var month = document.PayslipForm.salaryMonth.value;
+	var year = document.PayslipForm.salaryYear.value;
+	var monthYear = month+year;
+	var check = existingData.includes(monthYear);
+	if(check){
+		alert(month+'Payslip Already Generated');
+		return false;
+	}
+	
+	
+}
+</script>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -311,7 +338,7 @@ x
 					</table>
 					<br>
 					<table class="empDet" style="height: 10px">
-						<form action="<%=request.getContextPath()%>/generateSalarySlipDao">
+						<form action="<%=request.getContextPath()%>/generateSalarySlipDao" name= "PayslipForm">
 							<tr class="myBackground">
 								<th colspan="3"></th>
 
@@ -508,7 +535,7 @@ x
 						<th></th>
 						</tr>
 					</table>
-					<input type="submit" value="Save" />
+					<input type="submit"  onclick= "validate()"value="Save" />
 					</form>
 					<h6>
 						&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
