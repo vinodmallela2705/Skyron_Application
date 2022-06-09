@@ -31,8 +31,6 @@ public class ResetPassword extends HttpServlet{
 
 		
 		try {
-
-
 			Properties properties = new Properties();
 			properties.put("mail.smtp.auth", "true");
 			properties.put("mail.smtp.starttls.enable", "true");
@@ -68,8 +66,6 @@ public class ResetPassword extends HttpServlet{
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
 			otp= new DecimalFormat("000000").format(new Random().nextInt(999999));
 			message.setSubject("Password Reset");
-			message.setText("Your  password reset Verification code is.."+otp);
-			System.out.println("Otp.........................."+mail+"     "+otp);
 			return message;
 		} catch (Exception e) {
 

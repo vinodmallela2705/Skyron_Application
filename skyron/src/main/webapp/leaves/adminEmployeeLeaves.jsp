@@ -62,11 +62,7 @@
 					<div class="page-header">
 						<div class="row align-items-center">
 							<div class="col">
-								<h3 class="page-title">Leaves</h3>
-								<ul class="breadcrumb">
-									<li class="breadcrumb-item"><a href="">Dashboard</a></li>
-									<li class="breadcrumb-item active">Leaves</li>
-								</ul>
+								<h3 class="page-title">Employee Leave Status</h3>
 							</div>
 							
 						</div>
@@ -77,7 +73,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="table-responsive">
-								<table class="table table-striped custom-table mb-0 datatable">
+								<table class="table table-striped custom-table">
 									<thead>
 										<tr>
 											<th>Employee</th>

@@ -42,7 +42,27 @@
 		<!-- Main CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
 		
-		
+	
+	<script type="text/javascript">
+	function myFunction() {
+		  var input, filter, table, tr, td, i, txtValue;
+		  input = document.getElementById("myInput");
+		  filter = input.value.toUpperCase();
+		  table = document.getElementById("myTable");
+		  tr = table.getElementsByTagName("tr");
+		  for (i = 0; i < tr.length; i++) {
+		    td = tr[i].getElementsByTagName("td")[1];
+		    if (td) {
+		      txtValue = td.textContent || td.innerText;
+		      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+		        tr[i].style.display = "";
+		      } else {
+		        tr[i].style.display = "none";
+		      }
+		    }       
+		  }
+		}
+	</script>
     </head>
     <body><jsp:include page="/header"></jsp:include>
 		<!-- Main Wrapper -->
@@ -75,7 +95,7 @@
 						
 						<div class="col-sm-6 col-md-3">  
 							<div class="form-group form-focus">
-								<input type="text" class="form-control floating">
+								<input type="text" class="form-control floating" id="myInput" onkeyup="myFunction()">
 								<label class="focus-label">Employee Name</label>
 							</div>
 						</div>
@@ -124,7 +144,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="table-responsive">
-								<table class="table table-striped custom-table mb-0 datatable">
+								<table class="table table-striped custom-table"  id="myTable">
 									<thead>
 										<tr>
 											<th>#</th>
@@ -135,7 +155,7 @@
 											<th class="text-center">Actions</th>
 										</tr>
 									</thead>
-									<tbody> <%while (rs.next()){ %>
+									<tbody > <%while (rs.next()){ %>
 										<tr>
 											<td><%=rs.getString("employeeId") %></td>
 											<td>

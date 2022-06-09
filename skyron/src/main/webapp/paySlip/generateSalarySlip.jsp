@@ -1,3 +1,4 @@
+<%@page import="org.apache.poi.util.SystemOutLogger"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.sql.*"
 	import="java.io.*,com.JdbcConnection.DbConn,java.text.NumberFormat,java.util.Calendar,java.util.Formatter"%>
@@ -26,12 +27,14 @@
 	int pfNUmber;
 	String netPayWords;
 	Formatter fmt ;
+	ResultSet resultSet1 ;
 	 int year ;
 	{
 	Calendar cal = Calendar.getInstance();
     fmt = new Formatter();
     fmt.format("%tB", cal);
      year = Calendar.getInstance().get(Calendar.YEAR);}
+	String existingData ;
       %>
 
 <%
@@ -46,10 +49,26 @@ ResultSet resultSet;
 try {
 	Connection con = DbConn.getCon();
 	statement = con.createStatement();
-	String sql1 = "SELECT * FROM employeeDetails where employeeId=? ";
-	PreparedStatement st = con.prepareStatement(sql1);
+	
+	String sql= "SELECT * FROM employeeDetails where employeeId=? ";
+	PreparedStatement st = con.prepareStatement(sql);
 	st.setString(1, employee_id);
 	resultSet = st.executeQuery();
+	String sql1 = "SELECT * FROM salarySlips where  employeeId = 20199";
+	PreparedStatement st1 = con.prepareStatement(sql1);
+	//st1.setString(1, employee_id);
+	resultSet1 = st1.executeQuery(sql1); 
+	while (resultSet1.next()) {
+	System.out.println("resultSet1====="+resultSet1.getString("salaryMonth"));
+	%>
+	<script type="text/javascript">
+	var existingData = [];
+	existingData.push('<%=resultSet1.getString("salaryMonth")+"-"+resultSet1.getString("salaryYear")%>');
+
+	<%	
+	}%>
+</script>
+	<%
 	while (resultSet.next()) {
 
 		employeeName = resultSet.getString("firstName") + " " + resultSet.getString("lastName");
@@ -124,12 +143,26 @@ n = netPay;
 netPayWords = NumberFormat.getInstance().format(n) + "(  " + convert(n) + " Rupees )";
 session.setAttribute("we", workEmail);
 } catch (Exception e) {
-e.printStackTrace();
-}
+	e.printStackTrace();
+	}
 %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script type="text/javascript">
+
+function validate(){
+	var month = document.PayslipForm.salaryMonth.value;
+	var year = document.PayslipForm.salaryYear.value;
+	var monthYear = month+'-'+year;
+	var check = existingData.includes(monthYear);
+	if(check){
+		alert(month+' - '+year+'  Payslip Already Generated');
+		document.PayslipForm.salaryMonth.value = "";
+	}
+
+}
+</script>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -313,13 +346,13 @@ x
 					</table>
 					<br>
 					<table class="empDet" style="height: 10px">
-						<form action="<%=request.getContextPath()%>/generateSalarySlipDao">
+						<form action="<%=request.getContextPath()%>/generateSalarySlipDao" name= "PayslipForm">
 							<tr class="myBackground">
 								<th colspan="3"></th>
 
 								<th>Salary slip for <input type="text" value="<%=month%>"
-									name="salaryMonth" size="6">&nbsp<input size="4"
-									type="text" value="<%=year%>" name="salaryYear">
+									name="salaryMonth" size="6" required="required">&nbsp<input size="4"
+									type="text" value="<%=year%>" name="salaryYear" required>
 								</th>
 
 								<th colspan="3"></th>
@@ -440,11 +473,11 @@ x
 								value="<%=professionTax%>" name="professionTax" size="10"></td>
 						</tr>
 						<tr>
-							<th colspan="2">Provident Fund</th>
+							<th colspan="2">Medical Allowance</th>
 							<td>:</td>
 
 							<td class="myAlign"><input type="text"
-								value="<%=providentFund%>" name="providentFund" size="10"></td>
+								value="0.00" name="providentFund" size="10"></td>
 							<th colspan="2"></th>
 							<td></td>
 
@@ -510,7 +543,7 @@ x
 						<th></th>
 						</tr>
 					</table>
-					<input type="submit" value="Save" />
+					<input type="submit"  onclick= "validate()"value="Save" />
 					</form>
 					<h6>
 						&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
@@ -540,6 +573,7 @@ x
 
 	<!-- Custom JS -->
 	<script src="assets/js/app.js"></script>
+
 
 
 

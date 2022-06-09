@@ -10,7 +10,7 @@
     int remainingLeaves ;
     LocalDateTime dateTime = LocalDateTime.now();
     DateTimeFormatter dateTimeformatter;%>
-<%
+<%	
     dateTimeformatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
     if(((String)session.getAttribute("employeeId"))==null){
     	out.println("<script type=\"text/javascript\">");
@@ -26,6 +26,7 @@
 	PreparedStatement st=con.prepareStatement(sql_header);
 	st.setString(1,employeeId);
 	ResultSet rs=st.executeQuery();
+	
 	while(rs.next()){
 		employeeName = rs.getString("firstName")+" "+rs.getString("lastName");
 		//employeeImage = rs.getString("photo");

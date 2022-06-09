@@ -5,7 +5,6 @@
     String employeeName ;
     String employeeImage  = "assets/skyronImages/employeeIcon.png" ;
     String team = "Skyron";
-	StringBuilder experience = new StringBuilder() ;
     %>
     <% 
     try{
@@ -25,16 +24,19 @@
 	st.setInt(1,employee_id_h);
 	ResultSet rs=st.executeQuery();
 	while(rs.next()){
+		
 		employeeName = rs.getString("firstName")+" "+rs.getString("lastName");
+		
 		//employeeImage = rs.getString("photo");
 		String joiningDate = rs.getString("joiningdate");
-		String[] joiningDateS = joiningDate.split("-");
+		String[] joiningDateS = joiningDate.split("/");
 		int year  = Integer.parseInt(joiningDateS[2]);
 		int month = Integer.parseInt(joiningDateS[1]);
 		int date  = Integer.parseInt(joiningDateS[0]);
 		LocalDate dob = LocalDate.of(year, month, date);
-		LocalDate curDate = LocalDate.now();    
+		LocalDate curDate = LocalDate.now();
 		Period period = Period.between(dob, curDate);
+		StringBuffer experience = new StringBuffer() ;
 		if(experience.length()==0){
 			if(period.getYears()>0)
 				experience.append(period.getYears()+" years ");

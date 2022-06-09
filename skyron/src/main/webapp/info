@@ -34,7 +34,7 @@ create table employeeDetails( employeeId int not null , firstName VARCHAR2(30) n
  leaveReason varchar2(100),status varchar2(10),approvedBy varchar2(10),leaveType varchar2(30),usedLeaves varchar2(5)
  ,employeeName varchar2(100),workMail varchar2(60),PRIMARY KEY(employeeId,fromDate,toDate));
  
- create table Holidays ()
+ create table Holidays (event varchar2(30),eventDate varchar2(10), eventDay varchar2(20), Year varchar2(4));
  
  
   create table salarySlips (employeeId varchar2(10),employeeName varchar2(50),
