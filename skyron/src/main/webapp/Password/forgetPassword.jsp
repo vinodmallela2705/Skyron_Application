@@ -21,18 +21,7 @@
 		<!-- Main CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
 	
-    </head>  <% String error = request.getParameter("error");
-    System.out.println(error);
-    if(error==null){
-    	%>    <body class="account-page" oncontextmenu="return false"><% 
-    }
-    else{
-    %>
-    <body onLoad="javascript:JSalert()" class="account-page" oncontextmenu="return false">
-    <%} %>
-	
-
-	
+    </head>  
 		<!-- Main Wrapper -->
         <div class="main-wrapper">
 		
@@ -104,24 +93,7 @@
 
 		<!-- Custom JS -->
 		<script src="assets/js/app.js"></script>
-				<link rel="stylesheet" href="https://www.jquery-az.com/javascript/alert/dist/sweetalert.css">
-               <script src ="https://www.jquery-az.com/javascript/alert/dist/sweetalert-dev.js"></script>
- 
-		<script type="text/javascript">
-function JSalert(){
-	swal({   title: "<%=request.getParameter("error")%>",   
-    text: "Thank You!",   	
-    type: "warning", 
-    showconfirmButton:false,	
-    CancelButtonColor: "#DD6B55",   
-    CancelButtonText: "OK!",    
-    closeOnConfirm: true,   
-    closeOnCancel: true }, 
-    function(isConfirm){   
-        
-        });
-}
-</script>
+				
     </body>
 </html>
 

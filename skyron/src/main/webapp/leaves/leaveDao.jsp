@@ -2,8 +2,11 @@
     pageEncoding="ISO-8859-1"
      import="java.sql.*"
      import="java.io.*,com.JdbcConnection.DbConn,java.text.SimpleDateFormat,java.util.Date"%>
+<%@page import="com.Database.DataModel"%>
 <%! String days;
- int day;%>
+ int day;
+ DataModel dmObj = new DataModel();	
+ %>
 <%
 
 String id = (String)session.getAttribute("employeeId");
@@ -14,8 +17,8 @@ String employeeName = (String)session.getAttribute("employeeName");
 int employee_id = Integer.parseInt(id);
 String reporting_to = "789";
 String leave_name = request.getParameter("leaveType");
-String from_date = request.getParameter("fromDate");
-String to_date = request.getParameter("toDate");
+String from_date  = request.getParameter("fromDate");
+String to_date    = request.getParameter("toDate");
 String leave_reason = request.getParameter("leaveReason");
 String status = "New";
 String work_mail = (String)session.getAttribute("workEmail");
@@ -42,11 +45,10 @@ try {
 
 
 String edit = "insert into employeeLeaves " + "(employeeId,leaveType,fromDate,toDate,leaveReason,employeeName,status,days,approvedBy,workMail) VALUES "+ "(?,?,?,?,?,?,?,?,?,?)";
-String rmd = "select * from employeeDetails where employeeid=?";
 try {
 
 
-	Connection con=DbConn.getCon();
+Connection con=DbConn.getCon();
 PreparedStatement st = con.prepareStatement(edit);
  st.setInt(1, employee_id);
  st.setString(2,leave_name);
@@ -61,9 +63,7 @@ PreparedStatement st = con.prepareStatement(edit);
  
  st.executeUpdate();
 
-  PreparedStatement st1 =con.prepareStatement(rmd);
-  st1.setString(1, reporting_to);
-  ResultSet rs = st1.executeQuery();
+  ResultSet rs = dmObj.getEmployeeDetailsWithId(employee_id);
   while(rs.next()){  
   reporting_manager_email = rs.getString("workEmail");
   reporting_manager_name = rs.getString("firstName")+" "+rs.getString("lastName");

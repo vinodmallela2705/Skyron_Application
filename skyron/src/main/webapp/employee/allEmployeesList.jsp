@@ -1,7 +1,9 @@
 <%@page import="java.util.HashSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="java.sql.*,java.util.*"
-	import="com.JdbcConnection.DbConn"%><!DOCTYPE html>
+	pageEncoding="ISO-8859-1" import="java.sql.*,java.util.*"%>
+<%@page import="com.JdbcConnection.DbConn"%>
+<%@page import="com.Database.DataModel" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <%!HashSet<String>designations = new HashSet<String>(); %>
@@ -10,9 +12,9 @@
 	out.println("alert('Session Time Out Please Login');");
 	out.println("window.location.href = '"+request.getContextPath()+"/login';");
 	out.println("</script>");
-}					try{
-	Connection con=DbConn.getCon();
-	Statement statement=con.createStatement();
+}try{
+	DataModel dmObj = new DataModel();	
+	ResultSet rs = dmObj.getAllEmployees();
 	%>
 <meta charset="utf-8">
 <meta name="viewport"
@@ -97,8 +99,6 @@
 						</thead>
 						<tbody>
 							<%
-						   	String sql="select * from employeeDetails";
-						   	ResultSet rs= statement.executeQuery(sql);
 						   	while(rs.next()){%>
 							<tr>
 								<td>

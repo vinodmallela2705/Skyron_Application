@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.sql.*,java.util.Date"
 	import="java.io.*,com.JdbcConnection.DbConn,java.time.LocalDateTime,java.time.format.DateTimeFormatter"%>
+<%@page import="com.Database.DataModel" %>
 <%!  
     String employeeId  ;
     String employeeName ;
@@ -11,29 +12,25 @@
     LocalDateTime dateTime = LocalDateTime.now();
     DateTimeFormatter dateTimeformatter;%>
 <%	
-    dateTimeformatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-    if(((String)session.getAttribute("employeeId"))==null){
-    	out.println("<script type=\"text/javascript\">");
-		out.println("alert('Session Time Out Please Login');");
-		out.println("window.location.href = '"+request.getContextPath()+"/login';");
-		out.println("</script>");
-    	}
-    try{
-    	
+  dateTimeformatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+  if(((String)session.getAttribute("employeeId"))==null){
+  	out.println("<script type=\"text/javascript\">");
+	out.println("alert('Session Time Out Please Login');");
+	out.println("window.location.href = '"+request.getContextPath()+"/login';");
+	out.println("</script>");
+  }
+  try{
+    DataModel dmObj = new DataModel();		
     employeeId = (String)session.getAttribute("employeeId");	
-    Connection con=DbConn.getCon();
-	String sql_header="select * from employeeDetails where employeeId=?";
-	PreparedStatement st=con.prepareStatement(sql_header);
-	st.setString(1,employeeId);
-	ResultSet rs=st.executeQuery();
+	ResultSet rs = dmObj.getEmployeeDetailsWithId(employeeId);
 	
 	while(rs.next()){
 		employeeName = rs.getString("firstName")+" "+rs.getString("lastName");
 		//employeeImage = rs.getString("photo");
 		usedLeaves    = rs.getInt("usedLeaves");
 	}
-	remainingLeaves =20-usedLeaves;%>
-
+	remainingLeaves =20-usedLeaves;
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

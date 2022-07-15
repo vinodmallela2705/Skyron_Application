@@ -2,27 +2,23 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.sql.*"
 	import="java.io.*,com.JdbcConnection.DbConn"%>
-	<%!String employeeName ; %>
+<%@page import ="com.Database.DataModel" %>
+	<%!String employeeName ; 
+	DataModel dmObj = new DataModel();
+	%>
 	<%
 	if(((String)session.getAttribute("employeeId"))==null){
 		response.sendRedirect(request.getContextPath()+"/login?error=session Expired Please Re-Login");
     	}
 	try{
 		int employee_id;
-		Connection con=DbConn.getCon();
-		Statement statement=con.createStatement();
 		String employeeId = request.getParameter("id");
 		if(employeeId==null){
 		employee_id = Integer.parseInt((String)session.getAttribute("employeeId"));
 		}else{
 			employee_id = Integer.parseInt(employeeId);
 		}
-
-	   	String sql="select * from salarySlips where employeeId=? ";
-        PreparedStatement st = con.prepareStatement(sql);
-        st.setInt(1, employee_id);
-	   	ResultSet rs= st.executeQuery();
-
+	   	ResultSet rs= dmObj.getEmployeePayslips(employee_id);
 	%>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,6 +106,10 @@
 				
 				
 			<%}catch(Exception e){
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('"+e.toString()+"');");
+				out.println("window.location.href = '" + request.getContextPath() + "/error.jsp';");
+				out.println("</script>");
 			}%>
 	
 		<!-- /Page Content -->

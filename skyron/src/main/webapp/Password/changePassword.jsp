@@ -88,32 +88,6 @@
 		
 		<!-- Custom JS -->
 		<script src="assets/js/app.js"></script>
-				<link rel="stylesheet" href="https://www.jquery-az.com/javascript/alert/dist/sweetalert.css">
-<script src ="https://www.jquery-az.com/javascript/alert/dist/sweetalert-dev.js"></script>
- 
-		<script type="text/javascript">
-		
-function JSalert(){
-	swal({   title: "<%=request.getParameter("error")%>",   
-    text: "",   	
-    type: "warning", 
-    showconfirmButton:false,	
-    CancelButtonColor: "#DD6B55",   
-    CancelButtonText: "OK!",    
-    closeOnConfirm: true,   
-    closeOnCancel: true }, 
-    function(isConfirm){   
-        
-        });
-}
-
-</script>
-
-<%if(request.getParameter("error")==null){
-	}
-	else{%>
-	<body onLoad="javascript:JSalert()"/>
-<%} %>
-
+	
     </body>
 </html>

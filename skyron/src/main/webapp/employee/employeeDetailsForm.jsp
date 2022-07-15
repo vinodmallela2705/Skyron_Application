@@ -3,25 +3,28 @@
     pageEncoding="ISO-8859-1"
      import="java.sql.*"
      import="java.io.*,com.JdbcConnection.DbConn"%>
-    <%!String employeeName ; %>
+<%@page import="com.Database.DataModel" %>
+<%!
+String employeeName ;
+DataModel dmObj = new DataModel();    
+%>
 	<%
 	if(((String)session.getAttribute("employeeId"))==null){
-		response.sendRedirect(request.getContextPath()+"/login?error=session Expired Please Re-Login");
-    	}
+    	out.println("<script type=\"text/javascript\">");
+		out.println("alert('Session Time Out Please Login');");
+		out.println("window.location.href = '"+request.getContextPath()+"/login';");
+		out.println("</script>");
+    }
 	try{
+		int t = 5/0;
 		int employee_id;
-		Connection con=DbConn.getCon();
-		Statement statement=con.createStatement();
 		String employeeId = request.getParameter("id");
 		if(employeeId==null){
 		employee_id = Integer.parseInt((String)session.getAttribute("employeeId"));
 		}else{
 			employee_id = Integer.parseInt(employeeId);
 		}
-		String sql="select * from employeeDetails where employeeId=? ";
-        PreparedStatement st = con.prepareStatement(sql);
-        st.setInt(1, employee_id);
-	   	ResultSet rs= st.executeQuery();%>
+	   	ResultSet rs= dmObj.getEmployeeDetailsWithId(employee_id);%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -340,7 +343,10 @@
 											<button type="submit" class="btn btn-primary">Submit</button>
 										</div>
 									</form><%}}catch(Exception e){
-										System.out.println(e.getMessage());
+									    	out.println("<script type=\"text/javascript\">");
+											out.println("alert('"+e.toString()+"');");
+											out.println("window.location.href = '"+request.getContextPath()+"/error.jsp';");
+											out.println("</script>");
 									}%>
 									
 								</div>

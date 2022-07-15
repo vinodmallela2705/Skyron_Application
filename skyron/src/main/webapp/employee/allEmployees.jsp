@@ -1,20 +1,20 @@
 <!-- --
 This JSP is for Display All Employees in Grid View
  -->
+<%@page import="com.Database.DataModel"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.sql.*"
-	import="java.io.*,com.JdbcConnection.DbConn"%>
+	import="java.io.*,com.JdbcConnection.DbConn,com.Database.DataModel"%>
 <%
-if (((String) session.getAttribute("employeeId")) == null) {
+if (((String) session.getAttribute("employeeId")) == null || (String) session.getAttribute("workEmail") == null) {
 	out.println("<script type=\"text/javascript\">");
 	out.println("alert('Session Time Out Please Login');");
 	out.println("window.location.href = '" + request.getContextPath() + "/login';");
 	out.println("</script>");
 }
 try {
-	Connection con = DbConn.getCon();
-	Statement statement = con.createStatement();
-	
+	DataModel dmObj = new DataModel();	
+	ResultSet rs = dmObj.getAllEmployees();
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -120,8 +120,6 @@ try {
 				</script>
 				<div class="row staff-grid-row">
 					<%
-					String sql = "select * from employeeDetails";
-					ResultSet rs = statement.executeQuery(sql);
 					while (rs.next()) {
 					%>
 					<script type="text/javascript">

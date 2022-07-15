@@ -3,15 +3,17 @@
     pageEncoding="ISO-8859-1"
      import="java.sql.*"
      import="java.io.*,com.JdbcConnection.DbConn"%>
+<%@page import="com.Database.DataModel" %>
      <%
-	if(((String)session.getAttribute("employeeId"))==null){
-		response.sendRedirect(request.getContextPath()+"/login?error=session Expired Please Re-Login");
+     if (((String) session.getAttribute("employeeId")) == null || (String) session.getAttribute("workEmail") == null) {
+    		out.println("<script type=\"text/javascript\">");
+    		out.println("alert('Session Time Out Please Login');");
+    		out.println("window.location.href = '" + request.getContextPath() + "/login';");
+    		out.println("</script>");
     	}
 	try{
-		Connection con=DbConn.getCon();
-		Statement statement=con.createStatement();
-		String sql="select * from salaryslips";
-	   	ResultSet rs= statement.executeQuery(sql);
+		DataModel dmObj = new DataModel();
+	   	ResultSet rs= dmObj.getAllEmployeePayslips();
 		%>
      <!DOCTYPE html>
 <html lang="en">

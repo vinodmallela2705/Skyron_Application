@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.sql.*,java.util.Date"
 	import="java.io.*,com.JdbcConnection.DbConn,java.time.LocalDateTime,java.time.format.DateTimeFormatter"%>
-	
+<%@page import="com.Database.DataModel" %>
 	<%
-	if(((String)session.getAttribute("employeeId"))==null)
-	response.sendRedirect(request.getContextPath()+"/login?error=session Expired Please Re-Login");
-	String employeeId = "789" ;//(String)session.getAttribute("employeeId");	
-	    Connection con=DbConn.getCon();
-		String sql_header="select * from employeeLeaves where approvedBy=? and status = 'New' or status = 'pending'";
-		PreparedStatement st=con.prepareStatement(sql_header);
-		st.setString(1,employeeId);
-		ResultSet rs=st.executeQuery();
-		
+	if (((String) session.getAttribute("employeeId")) == null || (String) session.getAttribute("workEmail") == null) {
+		out.println("<script type=\"text/javascript\">");
+		out.println("alert('Session Time Out Please Login');");
+		out.println("window.location.href = '" + request.getContextPath() + "/login';");
+		out.println("</script>");
+	}
+	String employeeId   = (String)session.getAttribute("employeeId");
+		DataModel dmObj = new DataModel();	
+		ResultSet rs    = dmObj.getemployeeLeaves(employeeId);
 		%><!DOCTYPE html>
 <html lang="en">
     <head>

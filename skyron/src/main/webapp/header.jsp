@@ -1,38 +1,37 @@
-		<%@page import="javax.mail.Session"%>
+<%@page import="javax.mail.Session"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
      import="java.sql.*"
      import="java.io.*,com.JdbcConnection.DbConn"%>
-     <%@ page errorPage="error.jsp" %> 
-    <%!   int employeeId ;
-    String employeeName ;
-    String employeeImage ; 
-    String employeeType ;
-    %>
-    <% 
+<%@ page errorPage="error.jsp" %> 
+<%@ page import="com.Database.DataModel" %> 
+ <%!   int employeeId ;
+ String employeeName ;
+ String employeeImage ; 
+ String employeeType ;
+ String employeeEmail ;
+ %>
+<% 
  
-    try{
-    	if(((String)session.getAttribute("employeeId"))==null){
-    		out.println("<script type=\"text/javascript\">");
-			out.println("alert('Session Time Out Please Login');");
-			out.println("window.location.href = '"+request.getContextPath()+"/login';");
-			out.println("</script>");
-    	}else{
-    employeeId = Integer.parseInt((String)session.getAttribute("employeeId"));
-    Connection con=DbConn.getCon();
-	String sql_header="select * from employeeDetails where employeeId=?";
-	PreparedStatement st=con.prepareStatement(sql_header);
-	st.setInt(1,employeeId);
-	ResultSet rs=st.executeQuery();
-	while(rs.next()){
-		employeeName = rs.getString("firstName")+" "+rs.getString("lastName");
-		employeeType = rs.getString("employeeType");
-		//employeeImage = rs.getString("photo");
-		session.setAttribute("employeeName", employeeName);
-		session.setAttribute("workEmail",rs.getString("workEmail") );
-		session.setAttribute("usedLeaves", rs.getString("usedLeaves"));
-		
-	}%>
+ try{
+	 employeeEmail = (String)session.getAttribute("workEmail");
+ 	if((String)session.getAttribute("employeeId")== null || employeeEmail == null){
+ 		out.println("<script type=\"text/javascript\">");
+		out.println("alert('Session Time Out Please Login');");
+		out.println("window.location.href = '"+request.getContextPath()+"/login';");
+		out.println("</script>");
+ 	}else{
+	    DataModel dmObj = new DataModel();
+		ResultSet rs=dmObj.getEmployeeDetails(employeeEmail);
+		while(rs.next()){
+			employeeName = rs.getString("firstName")+" "+rs.getString("lastName");
+			employeeType = rs.getString("employeeType");
+			//employeeImage = rs.getString("photo");
+			session.setAttribute("employeeName", employeeName);
+			//session.setAttribute("workEmail",rs.getString("workEmail") );
+			session.setAttribute("usedLeaves", rs.getString("usedLeaves"));
+		}
+%>
     
 	<html><head>
 	<!-- Favicon -->

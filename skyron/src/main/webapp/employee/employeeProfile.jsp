@@ -1,50 +1,34 @@
 	 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"
      import="java.sql.*,java.io.*,com.JdbcConnection.DbConn,java.time.*"%>
-    <%!   int employee_id_h  ;
+     <%@page import="com.Database.DataModel" %>
+     <%@page import="com.Database.DateOperations" %>
+    <%!   String employee_id_h  ;
     String employeeName ;
     String employeeImage  = "assets/skyronImages/employeeIcon.png" ;
     String team = "Skyron";
+    DataModel dmObj = new DataModel();
+    DateOperations dtOpt = new DateOperations();
     %>
     <% 
     try{
-            while(((String)session.getAttribute("employeeId"))==null){
+            if(((String)session.getAttribute("employeeId"))==null){
             	out.println("<script type=\"text/javascript\">");
     			out.println("alert('Session Time Out Please Login');");
     			out.println("window.location.href = '"+request.getContextPath()+"/login';");
     			out.println("</script>");
             }
     	if(request.getParameter("id")==null)
-    		employee_id_h =Integer.parseInt((String)session.getAttribute("employeeId"));
+    		employee_id_h = (String)session.getAttribute("employeeId");
     	else
-    employee_id_h  = Integer.parseInt(request.getParameter("id"))  ;
-    Connection con=DbConn.getCon();
-	String sql_header="select * from employeeDetails where employeeId=?";
-	PreparedStatement st=con.prepareStatement(sql_header);
-	st.setInt(1,employee_id_h);
-	ResultSet rs=st.executeQuery();
+    		employee_id_h  = request.getParameter("id");
+	ResultSet rs = dmObj.getEmployeeDetailsWithId(employee_id_h);
 	while(rs.next()){
 		
 		employeeName = rs.getString("firstName")+" "+rs.getString("lastName");
-		
 		//employeeImage = rs.getString("photo");
 		String joiningDate = rs.getString("joiningdate");
-		String[] joiningDateS = joiningDate.split("/");
-		int year  = Integer.parseInt(joiningDateS[2]);
-		int month = Integer.parseInt(joiningDateS[1]);
-		int date  = Integer.parseInt(joiningDateS[0]);
-		LocalDate dob = LocalDate.of(year, month, date);
-		LocalDate curDate = LocalDate.now();
-		Period period = Period.between(dob, curDate);
-		StringBuffer experience = new StringBuffer() ;
-		if(experience.length()==0){
-			if(period.getYears()>0)
-				experience.append(period.getYears()+" years ");
-			if(period.getMonths()>0)
-				experience.append(period.getMonths()+" months  ");
-			if(period.getDays()>0)
-				experience.append(period.getDays()+" days");
-		}
+		String experience = dtOpt.getDurationDays(joiningDate) ;
 	%>
 	
 	<!DOCTYPE html>
